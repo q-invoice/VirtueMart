@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension version="2.5" type="plugin" group="vmpayment" >
+    <name>qinvoiceconnect</name>
+    <creationDate>September 2013</creationDate>
+    <author>Qinvoice</author>
+    <authorUrl>http://www.q-invoice.com</authorUrl>
+    <copyright>Copyright (C) 2013 Q-invoice.com. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+    <version>1.1.3</version>
+    <description><![CDATA[
+    	Process orders and create invoices via q-invoice.com. More info at <a href="http://www.q-invoice.com" target="_blank">wwww.q-invoice.com</a>. For support: info@q-invoice.com or call +31 70 220 62 33.
+    ]]>
+    </description>
+    
+    <files>
+		<filename plugin="qinvoiceconnect">qinvoiceconnect.php</filename>
+    </files>
+    <languages>
+		<language tag="en-GB">en-GB.plg_vmpayment_qinvoiceconnect.ini</language>
+    </languages>
+	<config>
+		<fields name="params">
+			<field name="params" addfieldpath="/administrator/components/com_virtuemart/elements" />
+			<field type="vmjpluginwarning" />
+			<fieldset name="VMPAYMENT_QINVOICECONNECT_GENERAL_CONFIGURATION">
+				
+				<field name="api_url" type="text" label="API url" description="i.e. https://app.q-invoice.com/api/xml/1.1/" default="https://app.q-invoice.com/api/xml/1.1/"/>
+				<field name="api_username" type="text" label="API username" description="Your API Username" default=""/>
+				<field name="api_password" type="password" label="API password" description="Your API Password" default=""/>
+				
+				<field name="layout_code" type="text" label="Layout code" description="Optional: Your layout code"/>
+				<field name="invoice_remark" type="text" label="Invoice remark" description="This remark will be shown on the invoice" default="Thank you for your order: #{order_id}"/>
+				<field name="paid_remark" type="text" label="Paid remark" description="Only shown if the order has been paid" default="Your payment has been received."/>
+				
+				<field name="invoice_tag" type="text" label="Invoice tag" description="A tag to be added to the invoice, i.e. your webshop name" default=""/>
+
+
+				<field name="invoice_trigger" type="list" default="" label="Send invoice request on" description="When to send the request to q-invoice">
+  					<option value="P">On every new order</option>
+  					<option value="C">When order is confirmed</option>
+  					<option value="S">When order is shipped</option>
+				</field>
+
+				<field name="invoice_action" type="list" default="" label="After request" description="How should we handle the request.">
+  					<option value="0">Save invoice as draft</option>
+  					<option value="1">Finalize invoice but don't send</option>
+  					<option value="2">Finalize and send to customer</option>
+				</field>
+
+				<field name="save_relation" type="list" default="" label="Save relation" description="Save the customer details in address book">
+  					<option value="0">Don't save</option>
+  					<option value="1">Save or update details</option>
+				</field>
+			
+				
+				</fieldset>
+		</fields>
+	</config>
+</extension>
