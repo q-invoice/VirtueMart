@@ -209,11 +209,16 @@ class plgVmPaymentQinvoiceConnect extends vmPSPlugin {
                 }
             }
         endforeach;
-    
+
+        // echo '<pre>';
+        // print_r($order['items']);
+        // echo '</pre>';
+        
+        // die();
         foreach($order['items'] as $item):
-           
+            $attributes = array();
             $attributes = json_decode($item->product_attribute);
-            $procuct_att = '';
+            $product_att = '';
             if(is_array($item->customfields)){
                 foreach($item->customfields as $customfield ){
                         $product_att .= "\n". $customfield->custom_title .": ". strip_tags($customfield->customfield_value);
